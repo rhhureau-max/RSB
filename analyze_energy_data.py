@@ -23,7 +23,7 @@ print("=" * 80)
 print("RÉSUMÉ DES VALEURS MANQUANTES PAR COLONNE")
 print("=" * 80)
 missing_values = df.isnull().sum()
-missing_percentage = (df.isnull().sum() / len(df)) * 100
+missing_percentage = (missing_values / len(df)) * 100
 missing_df = pd.DataFrame({
     'Colonne': missing_values.index,
     'Valeurs manquantes': missing_values.values,
@@ -48,7 +48,7 @@ else:
     df_filtered = df
 
 # Vérifier le nombre de valeurs non nulles pour 'greenhouse_gas_emissions'
-# pour les années 2019 et 2020
+# pour les années 2004 à 2019
 print("=" * 80)
 print("ANALYSE DE LA COLONNE 'greenhouse_gas_emissions'")
 print("=" * 80)
