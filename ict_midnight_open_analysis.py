@@ -23,8 +23,10 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from datetime import datetime, time
+import pytz
 import warnings
-warnings.filterwarnings('ignore')
+# Suppress only specific matplotlib warnings
+warnings.filterwarnings('ignore', category=UserWarning, module='matplotlib')
 
 
 def load_and_prepare_data(csv_path):
@@ -68,11 +70,12 @@ def load_and_prepare_data(csv_path):
     df.set_index('DateTime', inplace=True)
     
     # Localize to Chicago timezone (US/Central)
+    chicago_tz = pytz.timezone('US/Central')
     # If data is already timezone-aware, convert it; otherwise, localize it
     if df.index.tz is None:
-        df.index = df.index.tz_localize('US/Central', ambiguous='NaT', nonexistent='NaT')
+        df.index = df.index.tz_localize(chicago_tz, ambiguous='NaT', nonexistent='NaT')
     else:
-        df.index = df.index.tz_convert('US/Central')
+        df.index = df.index.tz_convert(chicago_tz)
     
     # Remove any NaT values that might have been created
     df = df[df.index.notna()]

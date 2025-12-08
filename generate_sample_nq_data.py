@@ -39,6 +39,7 @@ def generate_sample_nq_data(start_date='2023-01-01', end_date='2023-12-31',
     
     all_data = []
     current_price = initial_price
+    reference_price = None  # Initialize reference price for killzone logic
     
     for date in dates:
         # Generate 24 hours of 1-minute data
@@ -81,7 +82,7 @@ def generate_sample_nq_data(start_date='2023-01-01', end_date='2023-12-31',
                         if minute == 0 and hour == 1:
                             # Mark a reference price (simulating midnight open)
                             reference_price = open_price
-                        elif 'reference_price' in locals():
+                        elif reference_price is not None:
                             # Bias towards touching the reference
                             if reference_price > high_price:
                                 high_price = max(high_price, 
