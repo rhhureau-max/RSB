@@ -1,6 +1,29 @@
 # 🚀 DÉMARRAGE RAPIDE - Analyse Financière NVIDIA
 
-## ✅ Fichier Principal pour Tout Exécuter
+## ✅ Deux Options pour Exécuter l'Analyse
+
+### Option 1: Google Colab (RECOMMANDÉ - Plus Simple) 🌐
+
+**Ouvrez simplement le notebook dans Colab:**
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/rhhureau-max/RSB/blob/copilot/analyze-pdf-files/NVIDIA_Analysis_Colab.ipynb)
+
+**Ou téléchargez et ouvrez:**
+1. Téléchargez `NVIDIA_Analysis_Colab.ipynb`
+2. Allez sur [Google Colab](https://colab.research.google.com/)
+3. Menu: Fichier → Importer le notebook
+4. Téléversez le fichier `.ipynb`
+5. Exécutez toutes les cellules (Menu: Exécution → Tout exécuter)
+
+**Avantages:**
+- ✅ Aucune installation locale requise
+- ✅ Tout s'exécute dans le cloud
+- ✅ Visualisations interactives
+- ✅ Gratuit avec Google Account
+
+---
+
+### Option 2: Ligne de Commande Locale 💻
 
 **UN SEUL FICHIER À EXÉCUTER:**
 
@@ -66,7 +89,10 @@ python tvm_analysis.py
 
 ## 📁 Fichiers Importants
 
-### Fichiers Python (Code Source)
+### Pour Google Colab
+- **`NVIDIA_Analysis_Colab.ipynb`** ⭐ **NOTEBOOK COLAB - Ouvrir dans Colab**
+
+### Fichiers Python (Code Source - Ligne de Commande)
 - **`run_all_analyses.py`** ⭐ **FICHIER PRINCIPAL - Exécute tout**
 - `ai_investment_analysis.py` - Projet 1 (VAN, TRI, Monte Carlo)
 - `time_series_analysis.py` - Projet 2 (ARIMA, GARCH)
@@ -86,6 +112,15 @@ python tvm_analysis.py
 
 ## 💡 Exemple Complet d'Utilisation
 
+### Google Colab (Plus Simple):
+```
+1. Ouvrir NVIDIA_Analysis_Colab.ipynb dans Colab
+2. Cliquer: Exécution → Tout exécuter
+3. Attendre 5-10 minutes
+4. Consulter les résultats et graphiques
+```
+
+### Ligne de Commande:
 ```bash
 # Étape 1: Installation (une seule fois)
 pip install -r requirements.txt
