@@ -266,8 +266,9 @@ class TimeSeriesAnalysis:
         axes[1, 1].set_ylabel('Autocorrelation')
         
         plt.tight_layout()
-        plt.savefig('/home/runner/work/RSB/RSB/time_series_analysis.png', dpi=300, bbox_inches='tight')
-        print("📊 Visualizations saved: time_series_analysis.png\n")
+        output_path = 'time_series_analysis.png'
+        plt.savefig(output_path, dpi=300, bbox_inches='tight')
+        print(f"📊 Visualizations saved: {output_path}\n")
         plt.close()
     
     def generate_summary_report(self):

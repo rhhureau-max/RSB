@@ -466,8 +466,9 @@ class AIInvestmentAnalysis:
         ax2.grid(alpha=0.3)
         
         plt.tight_layout()
-        plt.savefig('/home/runner/work/RSB/RSB/monte_carlo_npv.png', dpi=300, bbox_inches='tight')
-        print(f"📊 Visualization saved: monte_carlo_npv.png\n")
+        output_path = 'monte_carlo_npv.png'
+        plt.savefig(output_path, dpi=300, bbox_inches='tight')
+        print(f"📊 Visualization saved: {output_path}\n")
         plt.close()
         
         return npv_simulations
