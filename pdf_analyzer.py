@@ -16,6 +16,10 @@ except ImportError:
     print("Please install dependencies: pip install -r requirements.txt")
     sys.exit(1)
 
+# Constants
+SUMMARY_PREVIEW_LENGTH = 500
+FULL_PREVIEW_LENGTH = 1000
+
 
 class PDFAnalyzer:
     """Analyze PDF files and extract information"""
@@ -75,7 +79,7 @@ class PDFAnalyzer:
         
         summary = {
             'metadata': metadata,
-            'first_page_preview': text[:500] + '...' if len(text) > 500 else text,
+            'first_page_preview': text[:SUMMARY_PREVIEW_LENGTH] + '...' if len(text) > SUMMARY_PREVIEW_LENGTH else text,
         }
         
         return summary
@@ -102,7 +106,7 @@ class PDFAnalyzer:
         else:
             text = self.extract_text(max_pages=1)
             print("First page preview:")
-            print(text[:1000] + '...' if len(text) > 1000 else text)
+            print(text[:FULL_PREVIEW_LENGTH] + '...' if len(text) > FULL_PREVIEW_LENGTH else text)
             print("\n(Use --full flag to extract all text)")
 
 
