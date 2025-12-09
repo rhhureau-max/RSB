@@ -30,6 +30,7 @@ debug_*.py
 # Backtest results (user-generated)
 *backtest_results.csv
 *_results.csv
+analyse_complete_fvg.csv
 
 # IDE
 .vscode/
