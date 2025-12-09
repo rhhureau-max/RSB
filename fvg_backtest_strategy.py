@@ -371,12 +371,14 @@ class FVGBacktester:
                     position_status['tp1_hit'] = True
                     position_status['remaining_position'] -= 0.33
         
-        # If position still open at end of day, close at market (SL)
+        # If position still open at end of day, close at market (assume SL hit)
         if position_status['remaining_position'] > 0:
             if entry['type'] == 'short':
-                loss = (levels['sl_price'] - entry['entry_price']) * position_status['remaining_position']
-            else:
-                loss = (levels['sl_price'] - entry['entry_price']) * position_status['remaining_position']
+                # For short: SL is above entry, so this is a loss (negative)
+                loss = -(levels['sl_price'] - entry['entry_price']) * position_status['remaining_position']
+            else:  # long
+                # For long: SL is below entry, so this is a loss (negative)
+                loss = -(entry['entry_price'] - levels['sl_price']) * position_status['remaining_position']
             pnl_points += loss
             position_status['sl_hit'] = True
         
