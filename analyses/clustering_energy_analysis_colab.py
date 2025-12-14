@@ -11,7 +11,7 @@ Google Colab Usage:
 3. Run the script - it will automatically load data from GitHub or prompt for upload
 
 Required packages (install in Colab):
-!pip install pandas numpy matplotlib seaborn plotly scikit-learn statsmodels openpyxl country_converter kaleido
+    pip install pandas numpy matplotlib seaborn plotly scikit-learn statsmodels openpyxl country_converter kaleido
 
 The analysis consists of 4 parts:
 1. Energy Archetypes: KMeans clustering (k=4) with PCA visualization
@@ -39,6 +39,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from scipy.stats import pearsonr
 import country_converter as coco
+from urllib.parse import quote
 
 warnings.filterwarnings('ignore')
 
@@ -53,6 +54,16 @@ CLUSTER_LABELS = {
     'high_fossil_high_consumption': 'Fossil Giants',
     'moderate_renewable_developing': 'Emerging Transitioners',
     'low_access_low_consumption': 'Energy Deficient'
+}
+
+# Cluster assignment thresholds (configurable)
+CLUSTER_ASSIGNMENT_THRESHOLDS = {
+    'green_leaders_renewable_min': 40,
+    'green_leaders_access_min': 95,
+    'fossil_giants_fossil_min': 60,
+    'fossil_giants_consumption_min': 50000,
+    'energy_deficient_access_max': 80,
+    'energy_deficient_consumption_max': 20000
 }
 
 # Momentum analysis thresholds (configurable)
@@ -75,7 +86,7 @@ def load_data_from_github_or_local(filename, repo_url_base="https://raw.githubus
     """
     Load data from GitHub raw URL, fallback to local path, or prompt for upload.
     """
-    github_url = repo_url_base + filename.replace(' ', '%20')
+    github_url = repo_url_base + quote(filename)
     
     print(f"Loading {filename}...")
     
@@ -263,11 +274,14 @@ def assign_cluster_label(row):
     consumption = row['consumption_per_capita']
     access = row['access_to_electricity']
     
-    if renewable > 40 and access > 95:
+    if renewable > CLUSTER_ASSIGNMENT_THRESHOLDS['green_leaders_renewable_min'] and \
+       access > CLUSTER_ASSIGNMENT_THRESHOLDS['green_leaders_access_min']:
         return 'Green Leaders'
-    elif fossil > 60 and consumption > 50000:
+    elif fossil > CLUSTER_ASSIGNMENT_THRESHOLDS['fossil_giants_fossil_min'] and \
+         consumption > CLUSTER_ASSIGNMENT_THRESHOLDS['fossil_giants_consumption_min']:
         return 'Fossil Giants'
-    elif access < 80 and consumption < 20000:
+    elif access < CLUSTER_ASSIGNMENT_THRESHOLDS['energy_deficient_access_max'] and \
+         consumption < CLUSTER_ASSIGNMENT_THRESHOLDS['energy_deficient_consumption_max']:
         return 'Energy Deficient'
     else:
         return 'Emerging Transitioners'
