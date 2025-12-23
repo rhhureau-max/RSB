@@ -1,0 +1,30 @@
+# Sample and test data files
+sample_NQ_M1_data.csv
+NQ_M1_data.csv
+
+# Analysis output files
+ict_midnight_open_results.csv
+ict_midnight_open_analysis.png
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
